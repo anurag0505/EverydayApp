@@ -1,20 +1,105 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// import { StatusBar } from 'expo-status-bar';
+// import { StyleSheet, Text, View } from 'react-native';
+
+import { Ionicons } from "@expo/vector-icons";
+import { ScrollView, SafeAreaView } from "react-native";
+import CalendarStrip from "react-native-calendar-strip";
+import Calendar from "./Components/Calendar";
+
+import styled from "styled-components";
+import Task from "./Components/Task";
+import React, { useState } from "react";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+	const [tasklist, setTaskList] = useState(LisOfTask);
+
+	return (
+		<Container>
+			<TitleBar>
+				<Avatar source={require("./assets/avatar-default.jpg")} />
+				<Title>Welcome Back,</Title>
+				<Name>Anurag</Name>
+				<Ionicons
+					name="notifications"
+					size={24}
+					color="#4775f2"
+					style={{ position: "absolute", right: 20, top: 5 }}
+				/>
+			</TitleBar>
+			<Calendar />
+			<DailyContent>Enter All Your Daily Task</DailyContent>
+			{tasklist.map((data, index) => (
+				<Task
+					key={index}
+					completed={data.completed}
+					description={data.description}
+				/>
+			))}
+		</Container>
+	);
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const Container = styled.View`
+	flex: 1;
+	background-color: #f0f3f5;
+`;
+
+const Title = styled.Text`
+	font-size: 16px;
+	color: #b8bece;
+	font-weight: 500;
+`;
+
+const Name = styled.Text`
+	font-size: 20px;
+	color: #3c4560;
+	font-weight: bold;
+`;
+
+const TitleBar = styled.View`
+	width: 100%;
+	margin-top: 50px;
+	padding-left: 80px;
+`;
+
+const Avatar = styled.Image`
+	width: 44px;
+	height: 44px;
+	border-radius: 22px;
+	background-color: black;
+	margin-left: 20px;
+	position: absolute;
+	top: 0;
+	left: 0;
+`;
+const Subtitle = styled.Text`
+	font-size: 15px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #b8bece;
+	margin-top: 20px;
+	margin-left: 20px;
+`;
+
+const DailyContent = styled.Text`
+	font-size: 22px;
+	font-weight: 600;
+	color: black;
+	opacity: 0.8;
+	margin: 20px auto;
+`;
+
+const LisOfTask = [
+	{
+		completed: true,
+		description: "this is task 1",
+	},
+	{
+		completed: false,
+		description: "this is task 2",
+	},
+	{
+		completed: true,
+		description: "this is task 3",
+	},
+];
