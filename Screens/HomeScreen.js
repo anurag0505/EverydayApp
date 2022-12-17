@@ -7,11 +7,12 @@ import CalendarStrip from "react-native-calendar-strip";
 import Calendar from "../Components/Calendar";
 
 import styled from "styled-components";
-import Task from "../Components/Task";
+
 import React, { useState } from "react";
+import Task from "../Components/Task";
 
 export default function HomeScreen() {
-	//const [tasklist, setTaskList] = useState(LisOfTask);	
+	//const [tasklist, setTaskList] = useState(LisOfTask);
 
 	return (
 		<Container>
@@ -28,11 +29,7 @@ export default function HomeScreen() {
 			</TitleBar>
 			<Calendar />
 			<DailyContent>Enter All Your Daily Task</DailyContent>
-			{/* <Task  completed={task1.completed} description={task1.description}  />
-			<Task completed={task2.completed} description={task2.description} />
-			<Task completed={task3.completed} description={task3.description} /> */}
 			<Task />
-			
 		</Container>
 	);
 }

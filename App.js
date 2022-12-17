@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 import HomeScreen from "./Screens/HomeScreen";
 import styled from "styled-components";
 import { store } from "./redux/store";
